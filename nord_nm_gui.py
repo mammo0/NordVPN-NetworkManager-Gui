@@ -6,7 +6,6 @@ import os
 import requests
 import shutil
 import time
-import prctl
 import keyring
 import subprocess
 import configparser
@@ -1259,8 +1258,6 @@ class MainWindow(QtWidgets.QMainWindow):
 
 if __name__ == '__main__':
     app_name = "NordVPN"
-    prctl.set_name(app_name)
-    prctl.set_proctitle(app_name)
     app = QtWidgets.QApplication(sys.argv)
     ui = MainWindow()
     sys.exit(app.exec_())
