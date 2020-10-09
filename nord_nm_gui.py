@@ -7,13 +7,24 @@ import requests
 import shutil
 import time
 import prctl
-import keyring
 import subprocess
 import configparser
 from collections import namedtuple
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QSystemTrayIcon, QStyle, QAction, qApp,  QMenu, QCheckBox
 from PyQt5.QtGui import QIcon
+
+
+# initialize keyring
+if not hasattr(sys, "frozen"):
+    import keyring
+    keyring.get_keyring()
+else:
+    # see https://github.com/pyinstaller/pyinstaller/issues/4569
+    # this program is only for linux, so only this is needed
+    import keyring.backends.SecretService
+    keyring.set_keyring(keyring.backends.SecretService.Keyring())
+
 
 connection_type_options = ['UDP', 'TCP']
 server_type_options = ['P2P', 'Standard', 'Double VPN', 'TOR over VPN', 'Dedicated IP'] # , 'Anti-DDoS', 'Obfuscated Server']
@@ -402,7 +413,6 @@ class MainWindow(QtWidgets.QMainWindow):
 
     def get_credentials(self):
         try:
-            keyring.get_keyring()
             password = keyring.get_password('NordVPN', self.username)
             self.password_input.setText(password)
         except Exception as ex:
