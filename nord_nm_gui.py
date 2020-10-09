@@ -1260,7 +1260,9 @@ class MainWindow(QtWidgets.QMainWindow):
 if __name__ == '__main__':
     app_name = "NordVPN"
     prctl.set_name(app_name)
-    prctl.set_proctitle(app_name)
+    if not hasattr(sys, "frozen"):
+        # this causes a segfault when using in pyinstaller, see https://github.com/pyinstaller/pyinstaller/issues/5238
+        prctl.set_proctitle(app_name)
     app = QtWidgets.QApplication(sys.argv)
     ui = MainWindow()
     sys.exit(app.exec_())
