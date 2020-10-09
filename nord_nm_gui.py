@@ -40,7 +40,7 @@ class MainWindow(QtWidgets.QMainWindow):
         """
         super(MainWindow, self).__init__()
         self.setObjectName("MainWindowObject")
-        self.setWindowIcon(QtGui.QIcon('nordvpnicon.png'))
+        self.setWindowIcon(QtGui.QIcon(self.__get_resource_path('nordvpnicon.png')))
         self.base_dir = os.path.join(os.path.abspath(os.path.expanduser('~')), '.nordnmconfigs')  # /home/username/.nordnmconfigs
         self.config_path = os.path.join(os.path.abspath(self.base_dir), '.configs')
         self.scripts_path = os.path.join(os.path.abspath(self.base_dir), '.scripts')
@@ -60,7 +60,7 @@ class MainWindow(QtWidgets.QMainWindow):
         """
         Initialize System Tray Icon
         """
-        self.trayIcon = QIcon("nordvpnicon.png")
+        self.trayIcon = QIcon(self.__get_resource_path("nordvpnicon.png"))
         self.tray_icon = QSystemTrayIcon(self)
         self.tray_icon.setIcon(self.trayIcon)
         show_action = QAction("Show NordVPN Network Manager", self)
@@ -1242,7 +1242,7 @@ class MainWindow(QtWidgets.QMainWindow):
     def retranslateUi(self):
         _translate = QtCore.QCoreApplication.translate
         self.setWindowTitle(_translate("MainWindow", " "))
-        self.title_label.setText(_translate("MainWindow", "<html><head/><body><p align=\"center\"><img src=\"nord-logo.png\"/></p></body></html>"))
+        self.title_label.setText(_translate("MainWindow", "<html><head/><body><p align=\"center\"><img src=\"" + self.__get_resource_path("nord-logo.png") + "\"/></p></body></html>"))
         self.country_list_label.setText(_translate("MainWindow", "Countries"))
         self.auto_connect_box.setStatusTip(_translate("MainWindow", "Network Manager will auto-connect on system start"))
         self.auto_connect_box.setText(_translate("MainWindow", "Auto connect"))
@@ -1258,13 +1258,21 @@ class MainWindow(QtWidgets.QMainWindow):
 
     def retranslate_login_ui(self):
         _translate = QtCore.QCoreApplication.translate
-        self.nord_image.setText(_translate("MainWindow", "<html><head/><body><p align=\"center\"><img src=\"nordvpnicon.png\"/></p><p align=\"center\"><br/></p></body></html>"))
+        self.nord_image.setText(_translate("MainWindow", "<html><head/><body><p align=\"center\"><img src=\"" + self.__get_resource_path("nordvpnicon.png") + "\"/></p><p align=\"center\"><br/></p></body></html>"))
         self.user_label.setText(
             _translate("MainWindow", "<html><head/><body><p align=\"right\">Email:     </p></body></html>"))
         self.password_label.setText(
             _translate("MainWindow", "<html><head/><body><p align=\"right\">Password:     </p></body></html>"))
         self.login_btn.setText(_translate("MainWindow", "Login"))
         self.remember_checkBox.setText(_translate("MainWindow", "Remember"))
+
+    def __get_resource_path(self, relative_path):
+        if hasattr(sys, "frozen"):
+            # PyInstaller creates a temp folder and stores path in _MEIPASS
+            base_path = getattr(sys, "_MEIPASS")
+        else:
+            base_path = os.path.dirname(__file__)
+        return os.path.join(base_path, relative_path)
 
 
 if __name__ == '__main__':
