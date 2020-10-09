@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "806eb70050ae9936e772a37cc8f94bd115b93f79988d3c4df62125b5b6e26c2f"
+            "sha256": "3b30307fb7c81ec0ba72919278e82a7075c338ad0db9d4f3d8b06b5d463a1798"
         },
         "pipfile-spec": 6,
         "requires": {},
@@ -215,6 +215,20 @@
             ],
             "version": "==0.17"
         },
+        "patchelf-wrapper": {
+            "hashes": [
+                "sha256:67c8802e7c3e79eaa28811ce5e3245e8264b54e16afd450a3b8d727bc0dbccb8"
+            ],
+            "index": "pypi",
+            "version": "==1.2.0"
+        },
+        "pyelftools": {
+            "hashes": [
+                "sha256:86ac6cee19f6c945e8dedf78c6ee74f1112bd14da5a658d8c9d4103aed5756a2",
+                "sha256:cc0ea0de82b240a73ef4056fce44acbb4727dca7d66759371aff2bad457ed711"
+            ],
+            "version": "==0.26"
+        },
         "pyinstaller": {
             "hashes": [
                 "sha256:970beb07115761d5e4ec317c1351b712fd90ae7f23994db914c633281f99bab0"
@@ -228,6 +242,14 @@
                 "sha256:c382f3ac1a42b45cfecd581475c36db77da90e479b2f5bcb6d840d21fa545114"
             ],
             "version": "==2020.9"
+        },
+        "staticx": {
+            "hashes": [
+                "sha256:91261695101ff5e8a321f08b572088c1831185e4092e0d843b9ffba42dd8a8c2",
+                "sha256:9248839ac89e8972c5d0a8829a7355348a6bea639f2467d6d576bbd43e73335f"
+            ],
+            "index": "pypi",
+            "version": "==0.12.0"
         }
     }
 }

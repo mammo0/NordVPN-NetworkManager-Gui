@@ -5,6 +5,8 @@ verify_ssl = true
 
 [dev-packages]
 pyinstaller = "*"
+staticx = "*"
+patchelf-wrapper = "*"
 
 [packages]
 pyqt5 = "*"
