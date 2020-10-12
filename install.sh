@@ -30,9 +30,9 @@ Type=Application
 Version=0.2-beta
 Name=Nord VPN
 Comment=NordVPN client
-Path="$current_dir"/nord_vpn
-Exec="$current_dir"/nord_vpn/launch_nord
-Icon="$current_dir"/nord_vpn/nordvpnicon.ico
+Path="$current_dir"/bin
+Exec="$current_dir"/bin/nord_nm_gui
+Icon="$current_dir"/nordvpnicon.ico
 Terminal=false
 Categories=Internet;System;Utilities;" | sudo tee $DESK_PATH/nordvpn.desktop > /dev/null
 

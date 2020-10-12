@@ -1,4 +1,7 @@
 # -*- mode: python ; coding: utf-8 -*-
+import PyInstaller.config
+PyInstaller.config.CONF['distpath'] = "./bin"
+
 
 block_cipher = None
 
