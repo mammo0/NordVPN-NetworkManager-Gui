@@ -4,5 +4,8 @@
 /.pydevproject
 /.settings/*
 
+/.init
+
 /build
+/dist
 /bin
