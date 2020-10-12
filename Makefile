@@ -18,6 +18,9 @@ build: ${STATIC_BIN}
 run: prepare
 	${PIPENV} run python ${SCRIPT}
 
+install: build
+	$(shell ${BASE}/install.sh)
+
 clean:
 	${PIPENV} --rm
 	rm ${INIT_FILE}
