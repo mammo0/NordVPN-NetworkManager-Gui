@@ -1,0 +1,54 @@
+name: Build NordVPN-NetworkManager Gui
+
+on:
+    push:
+        branches: master
+        tags:
+            - v*
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Install Dependencies
+              run: |
+                  sudo apt-get install libcap-dev
+                  sudo pip install pipenv
+            - name: Checkout
+              uses: actions/checkout@v2
+
+            - name: Build
+              run: make
+
+            - name: Prepare release
+              run: |
+                  binary_name=nord_nm_gui
+                  binary_file=$(pwd)/bin/$binary_name
+                  echo "BINARY_NAME=$binary_name" >> $GITHUB_ENV
+                  echo "BINARY_FILE=$binary_file" >> $GITHUB_ENV
+                  if [[ $GITHUB_REF == refs/tags/v* ]]; then
+                      echo "PRERELEASE=false" >> $GITHUB_ENV
+                  else
+                      echo "PRERELEASE=true" >> $GITHUB_ENV
+                  fi
+            - name: Create GH Release
+              if: success()
+              id: create_release
+              uses: actions/create-release@v1
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+              with:
+                  tag_name: ${{ github.ref }}
+                  release_name: NordVPN-NetworkManager Gui ${{ github.ref }}
+                  draft: false
+                  prerelease: ${{ env.PRERELEASE }}
+            - name: Upload binary
+              if: success()
+              uses: actions/upload-release-asset@v1
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+              with:
+                  upload_url: ${{ steps.create_release.outputs.upload_url }}
+                  asset_path: ${{ env.BINARY_FILE }}
+                  asset_name: ${{ env.BINARY_NAME }}
+                  asset_content_type: application/octet-stream
