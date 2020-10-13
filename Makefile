@@ -35,11 +35,14 @@ uninstall:
 	$(shell ${BASE}/uninstall.sh)
 
 clean:
-	${PIPENV} --rm
-	rm ${INIT_FILE}
 	rm -rf ${BASE}/build || true
 	rm -rf ${BASE}/dist || true
 	rm -rf ${BASE}/bin || true
+
+dist-clean: clean
+	${PIPENV} --rm || true
+	${PYENV} uninstall -f ${PYTHON_VERSION} || true
+	rm ${INIT_FILE} || true
 
 
 ${DYNAMIC_BIN}: ${SCRIPT} ${SPEC_FILE} prepare
