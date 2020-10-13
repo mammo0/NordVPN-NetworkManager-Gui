@@ -47,13 +47,13 @@ make build
 
 After the build process has finished the installation can be started with:
 ```shell
-make install
+sudo make install
 ```
 This step basically calls the `install.sh` script.
 
 For uninstalling call:
 ```shell
-make uninstall
+sudo make uninstall
 ```
 This step basically calls the `uninstall.sh` script.
 

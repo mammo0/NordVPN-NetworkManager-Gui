@@ -10,4 +10,4 @@ fi
 
 echo "Removing desktop shortcut from "$DESK_PATH
 
-sudo rm $DESK_PATH/nordvpn.desktop
+rm $DESK_PATH/nordvpn.desktop

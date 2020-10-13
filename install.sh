@@ -3,15 +3,15 @@
 # install dependencies
 
 if ! [ -z `which apt-get 2> /dev/null` ] && [ `nmcli networking` = "enabled" ] ; # Debian
-then sudo apt-get install network-manager-openvpn network-manager-openvpn-gnome
+then apt-get install network-manager-openvpn network-manager-openvpn-gnome
 fi
 
 if ! [ -z `which dnf 2> /dev/null` ] && [ `nmcli networking` = "enabled" ]; # Fedora
-then sudo dnf install NetworkManager-openvpn NetworkManager-openvpn-gnome
+then dnf install NetworkManager-openvpn NetworkManager-openvpn-gnome
 fi
 
 if ! [ -z `which pacman 2> /dev/null` ] && [ `nmcli networking` = "enabled" ]; # Arch Linux
-then sudo pacman -Sy networkmanager-openvpn
+then pacman -Sy networkmanager-openvpn
 fi
 
 current_dir=`pwd`
@@ -34,7 +34,6 @@ Path="$current_dir"/bin
 Exec="$current_dir"/bin/nord_nm_gui
 Icon="$current_dir"/nordvpnicon.ico
 Terminal=false
-Categories=Internet;System;Utilities;" | sudo tee $DESK_PATH/nordvpn.desktop > /dev/null
+Categories=Internet;System;Utilities;" | tee $DESK_PATH/nordvpn.desktop > /dev/null
 
-sudo chmod +x $DESK_PATH/nordvpn.desktop
-
+chmod +x $DESK_PATH/nordvpn.desktop
