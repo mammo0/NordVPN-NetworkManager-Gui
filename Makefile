@@ -21,6 +21,9 @@ run: prepare
 install: build
 	$(shell ${BASE}/install.sh)
 
+uninstall:
+	$(shell ${BASE}/uninstall.sh)
+
 clean:
 	${PIPENV} --rm
 	rm ${INIT_FILE}
