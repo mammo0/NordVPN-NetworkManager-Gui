@@ -15,7 +15,12 @@ jobs:
                   sudo apt-get install libcap-dev
                   sudo pip install pipenv
             - name: Install pyenv
-              uses: gabrielfalcao/pyenv-action@v6
+              run: |
+                  unset PYENV_ROOT
+                  curl -L https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer | bash
+                  echo "PATH=$HOME/.pyenv/bin:$PATH" >> $GITHUB_ENV
+                  echo "PYENV_ROOT=$PYENV_ROOT" >> $GITHUB_ENV
+
             - name: Checkout
               uses: actions/checkout@v2
 
