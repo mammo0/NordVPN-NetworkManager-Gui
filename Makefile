@@ -28,7 +28,7 @@ build: ${STATIC_BIN}
 run: prepare
 	${PIPENV} run python ${SCRIPT}
 
-install: build
+install:
 	$(shell ${BASE}/install.sh)
 
 uninstall:
