@@ -50,7 +50,7 @@ ${DYNAMIC_BIN}: ${SCRIPT} ${SPEC_FILE} prepare
 
 ${STATIC_BIN}: ${DYNAMIC_BIN}
 	mkdir -p ${BASE}/bin
-	${PIPENV} run staticx ${DYNAMIC_BIN} $@
+	${PIPENV} run staticx --debug --loglevel DEBUG ${DYNAMIC_BIN} $@
 
 ${INIT_FILE}:
 	PYTHON_CONFIGURE_OPTS="--enable-shared" ${PYENV} install -f ${PYTHON_VERSION}
