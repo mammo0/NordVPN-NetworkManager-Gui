@@ -32,8 +32,6 @@ Name=Nord VPN
 Comment=NordVPN client
 Path="$current_dir"/bin
 Exec="$current_dir"/bin/nord_nm_gui
-Icon="$current_dir"/nordvpnicon.ico
+Icon="$current_dir"/nordvpnicon.png
 Terminal=false
 Categories=Internet;System;Utilities;" | tee $DESK_PATH/nordvpn.desktop > /dev/null
-
-chmod +x $DESK_PATH/nordvpn.desktop
