@@ -29,10 +29,10 @@ run: prepare
 	${PIPENV} run python ${SCRIPT}
 
 install:
-	$(shell ${BASE}/install.sh)
+	${BASE}/install.sh
 
 uninstall:
-	$(shell ${BASE}/uninstall.sh)
+	${BASE}/uninstall.sh
 
 clean:
 	rm -rf ${BASE}/build || true
