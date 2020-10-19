@@ -19,12 +19,6 @@ jobs:
                           -e 's/^Inst \([^ ]\+\) .*$/\1/p' \
                       | sudo xargs apt-get install
                   sudo pip install pipenv
-            - name: Install pyenv
-              run: |
-                  unset PYENV_ROOT
-                  curl -L https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer | bash
-                  echo "PATH=$HOME/.pyenv/bin:$PATH" >> $GITHUB_ENV
-                  echo "PYENV_ROOT=$PYENV_ROOT" >> $GITHUB_ENV
 
             - name: Checkout
               uses: actions/checkout@v2

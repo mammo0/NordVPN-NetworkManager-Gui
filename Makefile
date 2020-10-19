@@ -6,20 +6,10 @@ STATIC_BIN = ${BASE}/bin/nord_nm_gui
 SPEC_FILE = ${BASE}/nord_nm_gui.spec
 INIT_FILE = ${BASE}/.init
 
-PYTHON_VERSION = $(shell cat ${BASE}/.python-version)
-
-
 # look for the pipenv executable
 PIPENV = $(shell command -v pipenv 2> /dev/null)
 ifeq ($(strip $(PIPENV)),)
 $(error "Error: pipenv is not installed!")
-endif
-PIPENV := PIPENV_DONT_USE_PYENV=true ${PIPENV}
-
-# look for the pyenv executable
-PYENV = $(shell command -v pyenv 2> /dev/null)
-ifeq ($(strip $(PYENV)),)
-$(error "Error: pyenv is not installed!")
 endif
 
 
@@ -53,9 +43,7 @@ ${STATIC_BIN}: ${DYNAMIC_BIN}
 	${PIPENV} run staticx --debug --loglevel DEBUG ${DYNAMIC_BIN} $@
 
 ${INIT_FILE}:
-	PYTHON_CONFIGURE_OPTS="--enable-shared" ${PYENV} install -f ${PYTHON_VERSION}
-	python_path=$$(${PYENV} which python); \
-		${PIPENV} install --python $$python_path
+	${PIPENV} sync
 	touch $@
 
 prepare: ${INIT_FILE}

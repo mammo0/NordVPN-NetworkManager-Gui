@@ -13,7 +13,3 @@ pyqt5 = "*"
 python-prctl = "*"
 requests = "*"
 keyring = "*"
-
-
-[requires]
-python_version = "3.6.11"
