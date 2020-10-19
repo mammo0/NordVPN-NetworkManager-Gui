@@ -2,7 +2,9 @@ name: Build NordVPN-NetworkManager Gui
 
 on:
     push:
-        branches: master
+        branches:
+            - master
+            - debug_staticx
         tags:
             - v*
 
@@ -39,7 +41,7 @@ jobs:
                       echo "RELEASE_NAME=$GITHUB_REF" >> $GITHUB_ENV
                   else
                       echo "PRERELEASE=true" >> $GITHUB_ENV
-                      echo "RELEASE_NAME=$(date +'%Y%m%d-%H%M')_$(echo $GITHUB_SHA | cut -c1-7)" >> $GITHUB_ENV
+                      echo "RELEASE_NAME=$(date +'%Y%m%d-%H%M')_${GITHUB_REF#refs/heads/}_$(echo $GITHUB_SHA | cut -c1-7)" >> $GITHUB_ENV
                   fi
             - name: Create GH Release
               if: success()
