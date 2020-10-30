@@ -22,6 +22,7 @@ if not hasattr(sys, "frozen"):
 else:
     # see https://github.com/pyinstaller/pyinstaller/issues/4569
     # this program is only for linux, so only this is needed
+    # TODO: should be obsolete after https://github.com/pyinstaller/pyinstaller/pull/5245
     import keyring.backends.SecretService
     keyring.set_keyring(keyring.backends.SecretService.Keyring())
 
